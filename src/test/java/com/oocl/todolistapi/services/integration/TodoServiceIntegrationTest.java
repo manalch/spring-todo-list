@@ -58,4 +58,18 @@ class TodoServiceIntegrationTest {
                 .andExpect(jsonPath("$.text").value("do tdd first"))
                 .andExpect(jsonPath("$.done").value(false));
     }
+
+    @Test
+    void should_get_todo_created_when_searched_by_id_given_2() throws Exception {
+        Todo todo1 = new Todo("Remember to do TDD first", false);
+        Todo todo2 = new Todo("Always", true);
+        todoRepository.save(todo1);
+        todoRepository.save(todo2);
+
+        mockMvc.perform(get("/todos/2"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.text").value("Always"))
+                .andExpect(jsonPath("$.done").value(true));
+    }
 }
