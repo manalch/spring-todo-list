@@ -1,13 +1,14 @@
-package services;
+package com.oocl.todolistapi.services;
 
-import jdk.nashorn.internal.objects.AccessorPropertyDescriptor;
-import models.Todo;
+import com.oocl.todolistapi.models.Todo;
+import com.oocl.todolistapi.repositories.TodoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import repositories.TodoRepository;
 
 import static java.util.Arrays.asList;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

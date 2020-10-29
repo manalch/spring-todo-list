@@ -1,10 +1,9 @@
-package controllers;
+package com.oocl.todolistapi.controllers;
 
-import exceptions.NotFoundTodoException;
-import models.Todo;
+import com.oocl.todolistapi.models.Todo;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import services.TodoService;
+import com.oocl.todolistapi.services.TodoService;
 
 import java.util.List;
 

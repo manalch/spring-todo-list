@@ -1,9 +1,9 @@
-package services;
+package com.oocl.todolistapi.services;
 
-import exceptions.NotFoundTodoException;
-import models.Todo;
+import com.oocl.todolistapi.exceptions.NotFoundTodoException;
+import com.oocl.todolistapi.models.Todo;
+import com.oocl.todolistapi.repositories.TodoRepository;
 import org.springframework.stereotype.Service;
-import repositories.TodoRepository;
 
 import java.util.List;
 

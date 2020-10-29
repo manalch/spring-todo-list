@@ -1,6 +1,6 @@
-package repositories;
+package com.oocl.todolistapi.repositories;
 
-import models.Todo;
+import com.oocl.todolistapi.models.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
