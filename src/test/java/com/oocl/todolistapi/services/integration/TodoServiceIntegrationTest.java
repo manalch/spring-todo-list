@@ -92,4 +92,12 @@ class TodoServiceIntegrationTest {
                 .andExpect(jsonPath("$.text").value("Remember to do TDD first"))
                 .andExpect(jsonPath("$.done").value(true));
     }
+
+    @Test
+    void should_delete_when_deleting_a_to_do() throws Exception {
+        Todo todo = new Todo("Remember to do TDD first", false);
+        todoRepository.save(todo);
+
+        mockMvc.perform(delete("/todos/1")).andExpect(status().isOk());
+    }
 }
