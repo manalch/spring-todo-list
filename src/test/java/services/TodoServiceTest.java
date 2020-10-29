@@ -60,4 +60,23 @@ class TodoServiceTest {
         //then
         assertSame(todo, actual);
     }
+
+    @Test
+    void should_update_todo_when_update_request_is_given() {
+        //given
+        Todo todo = new Todo("Remember to do TDD first", false);
+        Todo doneTodo = new Todo("Remember to do TDD first", true);
+
+        //when
+        when(todoRepository.save(todo)).thenReturn(todo);
+        todoService.createTodo(todo);
+        when(todoRepository.findById(anyInt())).thenReturn(java.util.Optional.of(todo));
+        todoService.findTodoById(anyInt());
+        when(todoRepository.save(doneTodo)).thenReturn(doneTodo);
+
+        //then
+        Todo actual = todoService.updateTodo(anyInt(), doneTodo);
+        assertSame(todo, actual);
+        assertTrue(actual.isDone());
+    }
 }
