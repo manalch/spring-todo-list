@@ -72,4 +72,24 @@ class TodoServiceIntegrationTest {
                 .andExpect(jsonPath("$.text").value("Always"))
                 .andExpect(jsonPath("$.done").value(true));
     }
+
+    @Test
+    void should_update_todo_when_is_done() throws Exception {
+        Todo todo = new Todo("Remember to do TDD first", false);
+        todoRepository.save(todo);
+
+        String todoJson = "{\n" +
+                "    \"text\":\"Remember to do TDD first\",\n" +
+                "    \"done\":true\n" +
+                "}";
+
+        mockMvc.perform(put("/todos/1")
+                .content(todoJson)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.text").value("Remember to do TDD first"))
+                .andExpect(jsonPath("$.done").value(true));
+    }
 }
