@@ -36,6 +36,6 @@ public class TodoService {
     }
 
     public void deleteTodo(int id) {
-        todoRepository.delete(findTodoById(id));
+        todoRepository.deleteById(id);
     }
 }
