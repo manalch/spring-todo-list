@@ -10,8 +10,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class TodoServiceTest {
 
@@ -79,5 +78,12 @@ class TodoServiceTest {
         Todo actual = todoService.updateTodo(anyInt(), doneTodo);
         assertSame(todo, actual);
         assertTrue(actual.isDone());
+    }
+
+    @Test
+    void should_delete_todo_when_deleted_given_the_todo_of_id() {
+        todoService.deleteTodo(1);
+
+        verify(todoRepository, times(1)).deleteById(1);
     }
 }
