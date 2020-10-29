@@ -8,6 +8,7 @@ import repositories.TodoRepository;
 
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -42,6 +43,19 @@ class TodoServiceTest {
         //when
         when(todoRepository.save(todo)).thenReturn(todo);
         Todo actual = todoService.createTodo(todo);
+
+        //then
+        assertSame(todo, actual);
+    }
+
+    @Test
+    void should_get_todo_when_searched_by_id() {
+        //given
+        Todo todo = new Todo();
+
+        //when
+        when(todoRepository.findById(anyInt())).thenReturn(java.util.Optional.of(todo));
+        Todo actual = todoService.findTodoById(anyInt());
 
         //then
         assertSame(todo, actual);
